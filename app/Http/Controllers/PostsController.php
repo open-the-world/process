@@ -12,6 +12,12 @@ use Auth;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'delete']);
+        $this->middleware('can:update,post')->only(['edit', 'update','delete']);
+    }
+
     public function index()
     {
         $posts = Post::with(['comments'])->orderBy('created_at', 'desc')->paginate(10);

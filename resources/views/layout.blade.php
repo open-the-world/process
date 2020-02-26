@@ -43,9 +43,6 @@
                <li class="nav-item">
                  <a class="nav-link" href="http://localhost:8000/category">カテゴリー</a>
                </li>
-               <li class="nav-item">
-                 <a class="nav-link" href="http://localhost:8000/help">ヘルプ</a>
-               </li>
                <!-- Authentication Links -->
              @guest
                <li class="nav-item">
@@ -78,15 +75,17 @@
                    </div>
                </li>
              @endguest
-               <form class="form-inline" action="{{url('/search')}}">
-                 <div class="form-group">
-                 <input type="text" name="keyword" value="{{ isset($keyword) ? $keyword : '' }}" class="form-control" id= "search-box" placeholder="タイトルを入力">
-                 <input type="submit" value="検索" class="btn btn-info">
-                 </div>
-               </form>
                <li>
-                 <a href="{{ route('posts.create') }}" class="btn btn-primary">
-                     記事を書く
+                 <form class="form-inline" action="{{url('/search')}}">
+                   <div id = "seachbox">
+                     <input type="text" name="keyword" value="{{ isset($keyword) ? $keyword : '' }}" class="form-control" id= "search-box" placeholder="検索">
+                     <input id = "search_button" type="image" src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/search.png" width="15%" height="15%">
+                   </div>
+                 </form>
+               </li>
+               <li>
+                 <a href="{{ route('posts.create') }}">
+                   <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/write.png" width="30%" height="30%">
                  </a>
                </li>
                 @can('admin')
@@ -96,18 +95,15 @@
                   </a>
                 </li>
                 @endcan
+                <li>
+                  <a href="http://localhost:8000/help">
+                    <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/help.png" width="30%" height="30%">
+                  </a>
+                </li>
            </ul>
          </div>
        </div>
      </nav>
-    <!-- <header class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('') }}">
-                Wrap by Processing
-            </a>
-        </div>
-    </header> -->
-    <script src="{{ asset('js/leaf.js') }}"></script>
 
     <div>
         @yield('content')

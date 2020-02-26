@@ -22,6 +22,10 @@ class CreatePostsTable extends Migration
           $table->text('advanced');
           $table->text('image');
           $table->timestamps();
+          $table->integer('user_id')->unsigned()->default(1);
++         $table->foreign('user_id')
++               ->references('id')->on('users')
++               ->onDelete('cascade');
         });
     }
 

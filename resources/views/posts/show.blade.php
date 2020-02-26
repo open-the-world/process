@@ -50,43 +50,46 @@
             </p>
 
             @if (Auth::check())
-            @if ($like)
-              {{ Form::model($post, array('action' => array('LikesController@destroy', $post->id, $like->id))) }}
-                <button type="submit" id="delete_button">
-                  <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/like.png" width="16%" height="16%">
-                  <p>Like {{ $post->likes_count }}</p>
-                </button>
-                <script type="text/javascript">
+              <button type="submit" id="likes_button">
+                @if ($like)
+                  <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/like.png" width="16%" height="16%" id ="likes_img">
+                @else
+                  <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/yet.like.png" width="16%" height="16%" id ="likes_img">
+                @endif
+              <text id="likes_counts"></text>
+              <script type="text/javascript">
                 $(function() {
-                  $('#delete_button').on('click', function() {
+                  @if ($like)
+                    var url = '/posts/{{$post->id}}/likes/{{$like->id}}';
+                  @else
+                    var url = '/posts/{{$post->id}}/likes';
+                  @endif
+                  $('#likes_button').on('click', function() {
                       $.ajax({
                           headers: {
                               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                           },
-                          url: './destroy',
+                          url: url,
                           type: 'POST',
-                          data: {'post_id': {{ $post->id }}, '_method': 'DELETE'}
+                          dataType : "JSON",
                       })
                       // Ajaxリクエストが成功した場合
                       .done(function(data) {
-                          console.log("OK");
+                        $("#likes_counts").text(data.likes_count);
+                        $("#likes_img").attr('src', data.image_url);
+                        url = data.url;
+                        console.log(data);
+
                       })
                       // Ajaxリクエストが失敗した場合
                       .fail(function(data) {
-                          console.log("Not OK");
+                          console.log(data);
                       });
                   });
               });
               </script>
-              {!! Form::close() !!}
-            @else
-              {{ Form::model($post, array('action' => array('LikesController@store', $post->id))) }}
-                <button type="submit">
-                  <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/yet.like.png" width="16%" height="16%">
-                  Like {{ $post->likes_count }}
-                </button>
-              {!! Form::close() !!}
-            @endif
+            </button>
+
             @else
               <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/like.png" width="4%" height="4%">
               <a>いいねするにはログインが必要です。</a>

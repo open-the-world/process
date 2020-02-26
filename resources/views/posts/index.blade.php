@@ -2,6 +2,7 @@
 
 @section('content')
       <main id="main">
+        <script src="{{ asset('js/leaf.js') }}"></script>
         <div class="container mt-8">
           <h1 class="my-4">
             HOME

@@ -26,7 +26,7 @@ padding: 0 ;
 nav li{
 list-style: none;
 display: inline-block;
-width: 12%;
+width: 6%;
 min-width:120px;
 }
 nav li:not(:last-child){
@@ -55,11 +55,20 @@ border-bottom:2px solid #F7CB4D;
   color: black;
 }
 
+#seachbox{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 #search-box{
   width: 60%;
   margin-left: 2%;
   margin-right: 2%;
   font-size: 15px;
+  vertical-align: middle;
+}
+
+#search_button{
   vertical-align: middle;
 }
 

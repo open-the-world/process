@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::resource('images', 'ImagesController', ['only' => ['index', 'create', 'store', 'show', 'destroy']]);
 
 Route::post('/posts/{post}/likes', 'LikesController@store');
-  Route::post('/posts/{post}/likes/{like}', 'LikesController@destroy');
+Route::post('/posts/{post}/likes/{like}', 'LikesController@destroy');
 
 Route::get('/search', 'searchController@index');
 
