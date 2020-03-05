@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Post;
+use App\User;
 use Storage;
 use Auth;
 
@@ -14,8 +15,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'delete']);
-        $this->middleware('can:update,post')->only(['edit', 'update','delete']);
+        $this->middleware('auth')->only(['edit', 'update', 'delete']);
     }
 
     public function index()
@@ -23,7 +23,10 @@ class PostsController extends Controller
         $posts = Post::with(['comments'])->orderBy('created_at', 'desc')->paginate(10);
         $disk = Storage::disk('s3');
         $files = $disk->files('/');
-        return view('posts.index', ['posts' => $posts,]);
+
+        return view('posts.index', [
+          'posts' => $posts,
+        ]);
     }
 
     public function create(Request $request)
@@ -48,6 +51,12 @@ class PostsController extends Controller
         $disk->put($file->hashName(), $fileContents, 'public');
         $imageUrl = $disk->url($file->hashName(), $fileContents, 'public');
         $params['image'] = $imageUrl;
+        if (Auth::check()){
+          $user_id = Auth::user()->id;
+          $params['user_id'] = $user_id;
+        }else{
+
+        }
         Post::create($params);
         return redirect()->route('top');
     }
@@ -59,10 +68,13 @@ class PostsController extends Controller
           ? $post->likes()->where('user_id', Auth::user()->id)->first()
           : null
         ;
+        $watcher = Auth::user()->id;
+        $author = $post->user->id;
 
         return view('posts.show', [
             'post' => $post,
             'like' => $like,
+            'watcher' => $watcher,
         ]);
     }
 

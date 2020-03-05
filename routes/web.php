@@ -14,7 +14,11 @@ Auth::routes();
 
 Route::get('/', 'PostsController@index')->name('top');
 
-Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show', 'edit', 'update','destroy']]);
+Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show']]);
+
+Route::group(['middleware' => ['auth', 'can:admin-user']], function () {
+    Route::resource('posts', 'PostsController', ['only' => ['edit', 'update','destroy']]);
+});
 
 Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 

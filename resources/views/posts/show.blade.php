@@ -4,21 +4,23 @@
     <div class="container mt-4">
         <div class="border p-4">
             <div class="mb-4 text-right">
-              <a class="btn btn-primary" href="{{ route('posts.edit', ['post' => $post]) }}">
-                  編集する
-              </a>
+              @if (($watcher) == ($post->user->id) )
+                <a class="btn btn-primary" href="{{ route('posts.edit', ['post' => $post]) }}">
+                    編集する
+                </a>
 
-              <form
-                style="display: inline-block;"
-                method="POST"
-                action="{{ route('posts.destroy', ['post' => $post]) }}"
-              >
-                @csrf
-                @method('DELETE')
+                <form
+                  style="display: inline-block;"
+                  method="POST"
+                  action="{{ route('posts.destroy', ['post' => $post]) }}"
+                >
+                  @csrf
+                  @method('DELETE')
 
-                <button class="btn btn-danger">削除する</button>
-              </form>
-
+                  <button class="btn btn-danger">削除する</button>
+                </form>
+              @else
+              @endif
             </div>
 
             <h1 class="h5 mb-4">
@@ -30,7 +32,11 @@
             </div>
 
             <p class="mb-5">
-                <b>投稿者名:</b>{!! nl2br(e($post->name)) !!}
+                @if (Auth::check())
+                <b>投稿者名:</b>{{$post->user->name}}さん
+                @else
+                <b>投稿者名:</b>名無しさん
+                @endif
             </p>
 
             <p class="mb-5">

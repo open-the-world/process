@@ -269,6 +269,10 @@ h1{
   width: 33.3333%;
 }
 
+.box-beginner a{
+  color: black;
+}
+
 .box-intermediate{
   float: left;
   background-color: #E5B712;
@@ -276,11 +280,19 @@ h1{
   width: 33.3333%;
 }
 
+.box-intermediate a{
+  color: black;
+}
+
 .box-advanced{
   float: left;
   background-color: #F73211;
   text-align: center;
   width: 33.3333%;
+}
+
+.box-advanced a{
+  color: black;
 }
 
 button{

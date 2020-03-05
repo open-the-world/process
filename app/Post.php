@@ -15,7 +15,8 @@ class Post extends Model
         'beginner',
         'intermediate',
         'advanced',
-        'image'
+        'image',
+        'user_id'
     ];
 
     public function user()

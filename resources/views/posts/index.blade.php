@@ -32,7 +32,11 @@
                         <b>カテゴリー:</b>{!! nl2br(e(str_limit($post->category, 9))) !!}
                       </p>
                       <p class="card-text">
-                        <b>投稿者名:</b>
+                        @if (Auth::check())
+                        <b>投稿者名:</b>{{$post->user->name}}さん
+                        @else
+                        <b>投稿者名:</b>名無しさん
+                        @endif
                       </p>
                     </div>
                     <div class="box">
