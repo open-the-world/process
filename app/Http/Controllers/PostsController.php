@@ -68,19 +68,17 @@ class PostsController extends Controller
           ? $post->likes()->where('user_id', Auth::user()->id)->first()
           : null
         ;
-        $watcher = Auth::user()->id;
-        $author = $post->user->id;
 
         return view('posts.show', [
             'post' => $post,
             'like' => $like,
-            'watcher' => $watcher,
         ]);
     }
 
     public function edit($post_id)
     {
         $post = Post::findOrFail($post_id);
+        $this->authorize('edit', $post);
 
         return view('posts.edit', [
             'post' => $post,

@@ -4,55 +4,78 @@
     <div class="container mt-4">
         <div class="border p-4">
             <div class="mb-4 text-right">
-              @if (($watcher) == ($post->user->id) )
-                <a class="btn btn-primary" href="{{ route('posts.edit', ['post' => $post]) }}">
-                    編集する
-                </a>
+              @if (Auth::check())
+                @can('edit', $post)
+                  <a class="btn btn-primary" href="{{ route('posts.edit', ['post' => $post]) }}">
+                      編集する
+                  </a>
 
-                <form
-                  style="display: inline-block;"
-                  method="POST"
-                  action="{{ route('posts.destroy', ['post' => $post]) }}"
-                >
-                  @csrf
-                  @method('DELETE')
+                  <form
+                    style="display: inline-block;"
+                    method="POST"
+                    action="{{ route('posts.destroy', ['post' => $post]) }}"
+                  >
+                    @csrf
+                    @method('DELETE')
 
-                  <button class="btn btn-danger">削除する</button>
-                </form>
+                    <button class="btn btn-danger">削除する</button>
+                  </form>
+                @endcan
               @else
               @endif
             </div>
 
+            <p class="mb-5">
+              <h4>
+                <i>
+                  <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/category.png" width="5%" height="5%">
+                  {!! nl2br(e($post->category)) !!}
+                </i>
+              </h4>
+            </p>
+
             <h1 class="h5 mb-4">
-                <b>タイトル:</b>{{ $post->title }}
+                <h1>{{ $post->title }}</h1>
             </h1>
+
+            <p class="mb-5">
+              <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/author.png" width="5%" height="5%">
+              @if(($post->user_id) == null)
+                <a>名無しさん</a>
+              @else
+                <a>{{$post->user->name}}さん</a>
+              @endif
+            </p>
 
             <div id=header_img align="center">
               <img src="{{ $post->image}}" alt="image">
             </div>
 
-            <p class="mb-5">
-                @if (Auth::check())
-                <b>投稿者名:</b>{{$post->user->name}}さん
-                @else
-                <b>投稿者名:</b>名無しさん
-                @endif
-            </p>
-
-            <p class="mb-5">
-                <b>カテゴリー:</b>{!! nl2br(e($post->category)) !!}
-            </p>
-
             <p class="mb-5" id="anchor-beginner">
-                <b>初級:</b>{!! nl2br(($post->beginner)) !!}
+              <h2>
+                初級:
+              </h2>
+              <h3>
+                {!! nl2br(($post->beginner)) !!}
+              </h3>
             </p>
 
             <p class="mb-5" id="anchor-intermediate">
-                <b>中級:</b>{!! nl2br(($post->intermediate)) !!}
+              <h2>
+                中級:
+              </h2>
+              <h3>
+                {!! nl2br(($post->intermediate)) !!}
+              </h3>
             </p>
 
             <p class="mb-5" id="anchor-advanced">
-                <b>上級:</b>{!! nl2br(($post->advanced)) !!}
+              <h2>
+                上級:
+              </h2>
+              <h3>
+                {!! nl2br(($post->advanced)) !!}
+              </h3>
             </p>
 
             @if (Auth::check())

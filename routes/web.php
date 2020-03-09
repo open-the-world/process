@@ -14,11 +14,7 @@ Auth::routes();
 
 Route::get('/', 'PostsController@index')->name('top');
 
-Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show']]);
-
-Route::group(['middleware' => ['auth', 'can:admin-user']], function () {
-    Route::resource('posts', 'PostsController', ['only' => ['edit', 'update','destroy']]);
-});
+Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show','edit', 'update','destroy']]);
 
 Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
@@ -46,7 +42,6 @@ Route::get('/category/skill', 'category\category_skillController@index');
 Route::get('/category/educate', 'category\category_educateController@index');
 
 Route::group(['middleware' => 'auth'], function() {
-  Route::get('/favorite', 'favoriteController@index');
   Route::get('/mypage', 'mypageController@index');
 });
 

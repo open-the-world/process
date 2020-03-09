@@ -51,7 +51,7 @@ class postPolicy
      * @param  \App\post  $post
      * @return mixed
      */
-    public function update(User $user, post $post)
+    public function edit(User $user, post $post)
     {
         return $user->id === $post->user_id;
     }

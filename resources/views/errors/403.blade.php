@@ -1,25 +1,54 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>403 Forbidden</title>
-  <style>
-    .error-wrap {
-      padding: 5px 20px;
-      border: 1px solid #dcdcdc;
-      display: inline-block;
-      box-shadow: 0px 0px 8px #dcdcdc;
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <style>
+    html,
+    body {
+        background-color: #fff;
+        color: #636b6f;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 100;
+        height: 100vh;
+        margin: 0;
     }
-    h1 { font-size: 18px; }
-    p { margin-left: 10px; }
-  </style>
+
+    .full-height {
+        height: 100vh;
+    }
+
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .position-ref {
+        position: relative;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 36px;
+        padding: 20px;
+    }
+    </style>
 </head>
+
 <body>
-  <div class="error-wrap">
-    <section>
-      <h1>403 Forbidden</h1>
-      <p>You do not have access.</p>
-    </section>
-  </div>
+    <div class="flex-center position-ref full-height">
+        <div class="content">
+            <div class="title">
+                Sorry, the page you are looking for could not be found.
+            </div>
+        </div>
+    </div>
 </body>
 </html>

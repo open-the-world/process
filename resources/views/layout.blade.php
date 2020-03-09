@@ -30,22 +30,22 @@
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
-         <div class="collapse navbar-collapse" id="navbarResponsive">
-           <ul class="navbar-nav ml-auto d-flex align-items-center">
-               <li class="nav-item active">
-                 <a class="nav-link" href="http://localhost:8000/">Home
+         <div id="navbarResponsive">
+           <ul>
+               <li>
+                 <a class="nav-link" href="http://localhost:8000/">HOME
                    <span class="sr-only">(current)</span>
                  </a>
                </li>
-               <li class="nav-item">
+               <li>
                  <a class="nav-link" href="http://localhost:8000/ranking">ランキング</a>
                </li>
-               <li class="nav-item">
+               <li>
                  <a class="nav-link" href="http://localhost:8000/category">カテゴリー</a>
                </li>
                <!-- Authentication Links -->
              @guest
-               <li class="nav-item">
+               <li>
                    <a class="nav-link" href="{{ route('login') }}">ログイン</a>
                </li>
                @if (Route::has('register'))
@@ -76,9 +76,9 @@
                </li>
              @endguest
                <li>
-                 <form class="form-inline" action="{{url('/search')}}">
-                   <div id = "seachbox">
-                     <input type="text" name="keyword" value="{{ isset($keyword) ? $keyword : '' }}" class="form-control" id= "search-box" placeholder="検索">
+                 <form action="{{url('/search')}}">
+                   <div>
+                     <input type="text" name="keyword" value="{{ isset($keyword) ? $keyword : '' }}" id= "search-box" placeholder="検索">
                      <input id = "search_button" type="image" src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/search.png" width="15%" height="15%">
                    </div>
                  </form>
