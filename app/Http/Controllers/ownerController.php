@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 
 
-class ownerController extends Controller
+class OwnerController extends Controller
 {
     public function index(Request $request)
     {

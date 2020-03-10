@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Post;
 use Storage;
 
-class searchController extends Controller
+class SearchController extends Controller
 {
   public function index(Request $request)
   {

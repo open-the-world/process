@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\category;
+namespace App\Http\Controllers\Category;
 
 use Illuminate\Http\Request;
 use App\Post;
 use Storage;
 use App\Http\Controllers\Controller;
 
-class category_skillController extends Controller
+class Category_skillController extends Controller
 {
   public function index()
   {
-      $posts = Post::with(['comments'])->orderBy('created_at', 'desc')->where('category', '=', "skill")->paginate(10);
+      $posts = Post::with(['comments'])->orderBy('created_at', 'desc')->where('Category', '=', "skill")->paginate(10);
       return view('category.skill', ['posts' => $posts]);
   }
 }

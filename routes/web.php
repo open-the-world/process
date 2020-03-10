@@ -18,31 +18,31 @@ Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show
 
 Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
-Route::get('/help', 'helpController@index');
+Route::get('/help', 'HelpController@index');
 
-Route::get('/ranking', 'rankingController@index');
+Route::get('/ranking', 'RankingController@index');
 
-Route::get('/category', 'categoryController@index');
+Route::get('/category', 'CategoryController@index');
 
-Route::get('/category/programming', 'category\category_programmingController@index');
-Route::get('/category/design', 'category\category_designController@index');
-Route::get('/category/language', 'category\category_languageController@index');
-Route::get('/category/sports', 'category\category_sportsController@index');
-Route::get('/category/study', 'category\category_studyController@index');
-Route::get('/category/work', 'category\category_workController@index');
-Route::get('/category/health', 'category\category_healthController@index');
-Route::get('/category/finance', 'category\category_financeController@index');
-Route::get('/category/happiness', 'category\category_happinessController@index');
-Route::get('/category/thinking', 'category\category_thinkingController@index');
-Route::get('/category/music', 'category\category_musicController@index');
-Route::get('/category/cooking', 'category\category_cookingController@index');
-Route::get('/category/video', 'category\category_videoController@index');
-Route::get('/category/daily', 'category\category_dailyController@index');
-Route::get('/category/skill', 'category\category_skillController@index');
-Route::get('/category/educate', 'category\category_educateController@index');
+Route::get('/category/programming', 'category\Category_programmingController@index');
+Route::get('/category/design', 'category\Category_designController@index');
+Route::get('/category/language', 'category\Category_languageController@index');
+Route::get('/category/sports', 'category\Category_sportsController@index');
+Route::get('/category/study', 'category\Category_studyController@index');
+Route::get('/category/work', 'category\Category_workController@index');
+Route::get('/category/health', 'category\Category_healthController@index');
+Route::get('/category/finance', 'category\Category_financeController@index');
+Route::get('/category/happiness', 'category\Category_happinessController@index');
+Route::get('/category/thinking', 'category\Category_thinkingController@index');
+Route::get('/category/music', 'category\Category_musicController@index');
+Route::get('/category/cooking', 'category\Category_cookingController@index');
+Route::get('/category/video', 'category\Category_videoController@index');
+Route::get('/category/daily', 'category\Category_dailyController@index');
+Route::get('/category/skill', 'category\Category_skillController@index');
+Route::get('/category/educate', 'category\Category_educateController@index');
 
 Route::group(['middleware' => 'auth'], function() {
-  Route::get('/mypage', 'mypageController@index');
+  Route::get('/mypage', 'MypageController@index');
 });
 
 Route::resource('images', 'ImagesController', ['only' => ['index', 'create', 'store', 'show', 'destroy']]);
@@ -50,9 +50,9 @@ Route::resource('images', 'ImagesController', ['only' => ['index', 'create', 'st
 Route::post('/posts/{post}/likes', 'LikesController@store');
 Route::post('/posts/{post}/likes/{like}', 'LikesController@destroy');
 
-Route::get('/search', 'searchController@index');
+Route::get('/search', 'SearchController@index');
 
 Route::group(['middleware' => ['auth', 'can:admin']], function () {
-    Route::get('/owner', 'ownerController@index');
-    Route::get('/owner/export{keyword?}', 'ownerController@export')->name('export.owner');
+    Route::get('/owner', 'OwnerController@index');
+    Route::get('/owner/export{keyword?}', 'OwnerController@export')->name('export.owner');
 });

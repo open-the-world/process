@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class helpController extends Controller
+class HelpController extends Controller
 {
   /**
    * Create a new controller instance.

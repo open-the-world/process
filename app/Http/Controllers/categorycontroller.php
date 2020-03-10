@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Storage;
 
-class categorycontroller extends Controller
+class Categorycontroller extends Controller
 {
   public function index()
   {

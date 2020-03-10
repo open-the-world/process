@@ -8,7 +8,7 @@ use App\User;
 use Storage;
 use Auth;
 
-class mypageController extends Controller
+class MypageController extends Controller
 {
   public function index(){
     $user = Auth::user();
