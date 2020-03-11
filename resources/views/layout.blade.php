@@ -26,22 +26,25 @@
 <body>
       <nav class="navbar navbar-expand-lg navbar-white bg-white fixed-top">
        <div class="container">
-         <a class="navbar-brand" href="http://localhost:8000/">process</a>
+         <a class="navbar-brand" href="{{ url('/') }}">
+           process
+         </a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
          <div id="navbarResponsive">
            <ul>
                <li>
-                 <a class="nav-link" href="http://localhost:8000/">HOME
+                 <a class="nav-link" href="{{ url('/') }}">
+                   HOME
                    <span class="sr-only">(current)</span>
                  </a>
                </li>
                <li>
-                 <a class="nav-link" href="http://localhost:8000/ranking">ランキング</a>
+                 <a class="nav-link" href="{{ url('/ranking') }}">ランキング</a>
                </li>
                <li>
-                 <a class="nav-link" href="http://localhost:8000/category">カテゴリー</a>
+                 <a class="nav-link" href="{{ url('/category') }}">カテゴリー</a>
                </li>
                <!-- Authentication Links -->
              @guest
@@ -90,13 +93,13 @@
                </li>
                 @can('admin')
                 <li>
-                  <a href="/owner">
+                  <a href="{{ url('/') }}">
                     管理
                   </a>
                 </li>
                 @endcan
                 <li>
-                  <a href="http://localhost:8000/help">
+                  <a href="{{ url('/help') }}">
                     <img src="https://media-process-img.s3.ap-northeast-1.amazonaws.com/icon/help.png" width="30%" height="30%">
                   </a>
                 </li>
