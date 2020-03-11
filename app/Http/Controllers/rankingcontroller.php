@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Storage;
 
-class Rankingcontroller extends Controller
+class RankingController extends Controller
 {
   public function index()
   {

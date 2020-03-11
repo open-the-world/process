@@ -43,17 +43,17 @@
           </div>
           <div class="box">
             <div class="box-beginner">
-              <a href="posts/{{$post->id}}#anchor-beginner">
+              <a href="{!! url('/posts/'. $post->id . '#anchor-beginner') !!}">
                 初級
               </a>
             </div>
             <div class="box-intermediate">
-              <a href="posts/{{$post->id}}#anchor-intermediate">
+              <a href="{!! url('/posts/'. $post->id . '#anchor-intermediate') !!}">
               中級
               </a>
             </div>
             <div class="box-advanced">
-              <a href="posts/{{$post->id}}#anchor-advanced">
+              <a href="{!! url('/posts/'. $post->id . '#anchor-advanced') !!}">
               上級
               </a>
             </div>
