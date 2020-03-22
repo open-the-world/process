@@ -29,7 +29,7 @@
                         <b>タイトル:</b>{{ $post->title}}
                       </p>
                       <p class="card-text">
-                        <b>カテゴリー:</b>{!! nl2br(e(str_limit($post->category, 9))) !!}
+                        <b>カテゴリー:</b>{{ $post->category }}
                       </p>
                       <p class="card-text">
                         @if(($post->user_id) == null)
